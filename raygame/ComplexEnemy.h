@@ -5,8 +5,7 @@ class WanderBehaviour;
 class PursueBehaviour;
 class EvadeBehaviour;
 
-class ComplexEnemy :
-	public Enemy
+class ComplexEnemy : public Enemy
 {
 public:
 	using Enemy::Enemy;

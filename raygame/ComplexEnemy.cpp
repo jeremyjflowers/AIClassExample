@@ -1,5 +1,7 @@
 #include "ComplexEnemy.h"
 #include "Player.h"
+#include "PursueBehaviour.h"
+#include "EvadeBehaviour.h"
 
 void ComplexEnemy::start()
 {
@@ -17,8 +19,8 @@ void ComplexEnemy::start()
 void ComplexEnemy::setTarget(Actor* target)
 {
 	Enemy::setTarget(target);
-	/*m_pursueBehaviour->setTarget(target);
-	m_evadeBehaviour->setTarget(target);*/
+	m_pursueBehaviour->setTarget(target);
+	m_evadeBehaviour->setTarget(target);
 }
 
 void ComplexEnemy::onCollision(Actor* other)
