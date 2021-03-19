@@ -22,7 +22,6 @@ public:
     /// <returns></returns>
     static Scene* getCurrentScene();
 
-    /// <returns>The index of the current scene in the game's array of scenes.</returns>
     static int getCurrentSceneIndex();
 
     /// <summary>
@@ -63,32 +62,26 @@ public:
     /// <returns></returns>
     static bool getKeyPressed(int key);
 
-    /// <summary>
-    /// Removes the actor from the scene, removes it from its parent, calls its end function, and deletes the actor.
-    /// </summary>
-    /// <param name="actor">The actor that will be deleted.</param>
+    static int getScreenWidth() { return m_screenWidth; }
+    static int getScreenHeight() { return m_screenHeight; }
+
     static void destroy(Actor* actor);
-
-    /// <summary>
-    /// Sets the game state to be the given value. If true, the game will end.
-    /// </summary>
-    /// <param name="value">The value to set game over.</param>
     static void setGameOver(bool value);
-
-    /// <returns>The world matrix of the current scene.</returns>
     static MathLibrary::Matrix3* getWorld();
     void run();
 
 private:
-	void start();
-	void update(float delaTime);
-	void draw();
-	void end();
+    void start();
+    void update(float deltaTime);
+    void draw();
+    void end();
 
 private:
     Camera2D* m_camera;
     static bool m_gameOver;
-	static Scene** m_scenes;
+    static Scene** m_scenes;
     static int m_sceneCount;
     static int m_currentSceneIndex;
+    static int m_screenWidth;
+    static int m_screenHeight;
 };
