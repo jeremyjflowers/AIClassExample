@@ -10,6 +10,7 @@ public:
 	Node(int x, int y, int nodeSize);
 	std::vector<Edge*> edges;
 	MathLibrary::Vector2 graphPosition;
+	float gScore;
 	int color = 0xFFFFFFFF;
 	int size = 1;
 	bool visited;

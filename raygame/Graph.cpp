@@ -30,6 +30,19 @@ void Graph::update(float deltaTime)
 	}
 }
 
+Node* Graph::checkList(std::deque<Node*> list, Node* lookingFor)
+{
+	for (int i = 0; i < list.size(); i++)
+	{
+		if (list[i] = lookingFor)
+		{
+			return lookingFor;
+		}
+	}
+
+	return nullptr;
+}
+
 void Graph::BFS(int startX, int startY, int goalX, int goalY)
 {
 	//Get a referance to the start and end nodes
@@ -116,6 +129,7 @@ void Graph::DSP(int startX, int startY, int goalX, int goalY)
 
 	//Sets the color of the start node
 	start->color = ColorToInt(GREEN);
+	start->gScore = 0;
 
 	//Creates a node pointer that will act as an iterator
 	Node* currentNode;
@@ -175,23 +189,41 @@ void Graph::DSP(int startX, int startY, int goalX, int goalY)
 			}
 
 			//Checks if node at the end of the edge is in the closed list
-			if (currentEdgeEnd->edges[i]->connectedNode2 == closeList.push_back)
+			if (checkList(closeList, currentEdgeEnd))
 			{
 				//Creates an int and set it to be the g score of the iterator plus the cost of the edge
-
+				float total = currentNode->gScore + currentNode->edges[i]->cost;
 
 				//Checks if the node at the end of the edge is in the open list
-
+				if (currentEdgeEnd)
+				{
 					//Marks the node as visited by changing its color
+					currentEdgeEnd->color = ColorToInt(RED);
+					currentEdgeEnd->visited;
+
 					//Sets the nodes g score to be the g score calculated earlier
+					currentEdgeEnd->gScore = total;
+
 					//Sets the nodes previous to be the iterator
+					currentEdgeEnd->edges[i]->connectedNode1 = currentEdgeEnd;
+					
 					//Adds the node to the open list
+					openList.push_back(currentEdgeEnd);
+				}
 
 				//Otherwise if the g score is less than the node at the end of the edge's g score...
-
+				else
+				{
 					//Marks the node as visited by changing its color
+					currentEdgeEnd->color = ColorToInt(RED);
+					currentEdgeEnd->visited;
+
 					//Sets its g score to be the g score calculated earlier
+					currentEdgeEnd->gScore = total;
+
 					//Sets its previous to be the current node
+					currentEdgeEnd->edges[i]->connectedNode1 = currentNode;
+				}
 			}
 
 		}
@@ -230,7 +262,8 @@ void Graph::aStar(int startX, int startY, int goalX, int goalY)
 	openList.push_front(start);
 
 	//Loop while the open list is not empty
-
+	while (!openList.empty())
+	{
 		//Sort the items in the open list by the f score
 
 		//Set the iterator to be the first item in the open list
@@ -255,32 +288,33 @@ void Graph::aStar(int startX, int startY, int goalX, int goalY)
 				//set the edge end pointer to be the second end of the node
 			// end if statement
 
-			//Check if node at the end of the edge is in the closed list
+		//Check if node at the end of the edge is in the closed list
 
-				//Create a float and set it to be the g score of the iterator plus the cost of the edge
-				//Create a float and set it to be the h score of the node at the end of the edge
-				//Create a float for the f score and set it to be the g score combined with the h score
+		//Create a float and set it to be the g score of the iterator plus the cost of the edge
+		//Create a float and set it to be the h score of the node at the end of the edge
+		//Create a float for the f score and set it to be the g score combined with the h score
 
-				//Check if the node at the end of the edge is in the open list
+		//Check if the node at the end of the edge is in the open list
 
-					//Mark the node as visited by changing its color
-					//Set the nodes g score to be the g score calculated earlier
-					//Set the nodes h score to be the h score calculated earlier
-					//Set the nodes f score to be the f score calculated earlier
-					//Set the nodes previous to be the iterator
-					//Add the node to the open list
+			//Mark the node as visited by changing its color
+			//Set the nodes g score to be the g score calculated earlier
+			//Set the nodes h score to be the h score calculated earlier
+			//Set the nodes f score to be the f score calculated earlier
+			//Set the nodes previous to be the iterator
+			//Add the node to the open list
 
-				//Otherwise if the f score is less than the node at the end of the edge's f score...
+		//Otherwise if the f score is less than the node at the end of the edge's f score...
 
-					//Mark the node as visited by changing its color
-					//Set its g score to be the g score calculated earlier
-					//Set the nodes h score to be the h score calculated earlier
-					//Set its f score to be the f score calculated earlier
-					//Set its previous to be the current node
+			//Mark the node as visited by changing its color
+			//Set its g score to be the g score calculated earlier
+			//Set the nodes h score to be the h score calculated earlier
+			//Set its f score to be the f score calculated earlier
+			//Set its previous to be the current node
 
-				//end if statement
-		//end loop
-	//end loop
+		//end if statement
+//end loop
+//end loop
+	}
 }
 
 void Graph::bubbleSort(std::deque<Node*> node)

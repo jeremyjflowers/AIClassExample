@@ -12,6 +12,7 @@ public:
 	void draw()override;
 	void update(float deltaTime) override;
 
+	Node* checkList(std::deque<Node*> list, Node* lookingFor);
 	void BFS(int startX, int startY, int goalX, int goalY);
 	void DSP(int startX, int startY, int goalX, int goalY);
 	void aStar(int startX, int startY, int goalX, int goalY);

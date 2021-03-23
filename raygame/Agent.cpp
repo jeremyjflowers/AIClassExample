@@ -63,3 +63,4 @@ void Agent::addBehaviour(Behaviour* behaviour)
 {
 	if (behaviour)
 		m_behaviours.push_back(behaviour);
+}
